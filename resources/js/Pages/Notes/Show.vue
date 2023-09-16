@@ -26,11 +26,12 @@
                             </div>
                         </div>
                         <div class="md:col-span-2 mt-5 md:mt-0">
-                            <p>{{note.content}}</p>
+                            <div class="shadow bg-white md:rounded-md p4">
+                                <p>{{note.content}}</p>
+                                <hr class="my-6">
+                                <Link :href="route('notes.index')">Volver</Link>
+                            </div>
                         </div>
-                        <hr class="my-6">
-
-                        <Link :href="route('notes.index')">Volver</Link>
                     </div>
                 </div>
             </div>

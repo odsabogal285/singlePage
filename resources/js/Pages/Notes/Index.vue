@@ -17,16 +17,17 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <div class="md:grid md:grid-cols-3 md:gap-6">
-                        <div class="md:col-span-1">
-                            <div class="p3-4 sm:px-0">
-                                <h3>Listado de notas</h3>
-                                <p class="text-sm text-gray-600">Toma el registro correcto y ejecuta cualquier función (Ver, editar o eliminar)</p>
-                            </div>
+                <div class="md:grid md:grid-cols-3 md:gap-6">
+                    <div class="md:col-span-1">
+                        <div class="px-4 sm:px0">
+                            <h3 class="text-lg text-gray-900">Listado de notas</h3>
+                            <p class="text-sm text-gray-600">Toma el registro correcto y ejecuta cualquier función (Ver, editar o eliminar)</p>
                         </div>
-                        <div class="md:col-span-2 mt-5 md:mt-0">
-                            <table>
+                    </div>
+                    <div class="md:col-span-2 mt-5 md:mt-0">
+                        <div class="shadow bg-white md:rounded-md p-4">
+                            <Link :href="route('notes.create')" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-md">Crear</Link>
+                            <table class="mt-4">
                                 <tr v-for="note in notes">
                                     <td class="border px-4 py-2">
                                         {{note.excerpt}}
