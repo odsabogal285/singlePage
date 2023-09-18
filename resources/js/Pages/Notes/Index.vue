@@ -1,10 +1,17 @@
 <script setup>
     import AppLayout from '@/Layouts/AppLayout.vue';
-    import { Link } from '@inertiajs/vue3';
+    import {Link, router} from '@inertiajs/vue3';
+    import {ref, watch} from "vue";
 
     defineProps({
         notes: Array
-    })
+    });
+
+    const q = ref('');
+
+    watch(q, (value) => {
+        router.get( route( 'notes.index', { q: value } ), {}, { preserveState: true } );
+    });
 </script>
 
 <template>
@@ -26,7 +33,10 @@
                     </div>
                     <div class="md:col-span-2 mt-5 md:mt-0">
                         <div class="shadow bg-white md:rounded-md p-4">
-                            <Link :href="route('notes.create')" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-md">Crear</Link>
+                            <div class="flex justify-between">
+                                <input type="text" class="form-input rounded-md shadow-sm" placeholder="Buscar ..." v-model="q">
+                                <Link :href="route('notes.create')" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-md">Crear</Link>
+                            </div>
                             <table class="mt-4">
                                 <tr v-for="note in notes">
                                     <td class="border px-4 py-2">

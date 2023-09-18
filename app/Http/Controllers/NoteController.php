@@ -11,10 +11,12 @@ class NoteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         return Inertia::render('Notes/Index', [
-            'notes' => Note::latest()->get()
+            'notes' => Note::latest()
+                ->where('excerpt', 'Like', '%'.$request->q.'%')
+                ->get()
         ]);
     }
 
@@ -69,7 +71,7 @@ class NoteController extends Controller
 
         $note->update($request->all());
 
-        return redirect()->route('notes.index');
+        return redirect()->route('notes.index')->with("status","Nota Actualizada");
     }
 
     /**
@@ -77,6 +79,7 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
-        //
+        $note->delete();
+        return redirect()->route('notes.index');
     }
 }
